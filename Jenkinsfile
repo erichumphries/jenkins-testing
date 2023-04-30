@@ -23,7 +23,7 @@ pipeline {
                 stage ('Lint Backend') {
                     steps {
                         dir ('express-react/express') {
-                            sh 'npx eslint . --format html --output-file reports/eslint.html'
+                            sh 'npx eslint . --format html --output-file reports/backend-eslint.html'
                             publishHTML (
                                 target: [
                                     allowMissing: false,
@@ -40,7 +40,7 @@ pipeline {
                 stage ('Security Backend') {
                     steps {
                         dir ('express-react/express') {
-                            sh 'npm audit --json | npm-audit-html --output reports/audit.html'
+                            sh 'npm audit --json | npm-audit-html --output reports/backend-audit.html'
                             publishHTML (
                                 target: [
                                     allowMissing: false,
@@ -61,7 +61,7 @@ pipeline {
                 stage ('Lint Frontend') {
                     steps {
                         dir ('express-react/react') {
-                            sh 'npx eslint . --format html --output-file reports/eslint.html'
+                            sh 'npx eslint . --format html --output-file reports/frontend-eslint.html'
                             publishHTML (
                                 target: [
                                     allowMissing: false,
@@ -78,7 +78,7 @@ pipeline {
                 stage ('Security Frontend') {
                     steps {
                         dir ('express-react/react') {
-                            sh 'npm audit --json | npm-audit-html --output reports/audit.html'
+                            sh 'npm audit --json | npm-audit-html --output reports/frontend-audit.html'
                             publishHTML (
                                 target: [
                                     allowMissing: false,
