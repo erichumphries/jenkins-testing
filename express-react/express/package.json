@@ -12,7 +12,6 @@
     "dotenv": "^8.2.0",
     "express": "^5.0.0-beta.1",
     "multer": "^1.4.5-lts.1",
-    "npm-audit-html": "^2.0.0-beta.2",
     "npx": "^10.2.2",
     "prisma": "^4.12.0",
     "sharp": "^0.30.6"

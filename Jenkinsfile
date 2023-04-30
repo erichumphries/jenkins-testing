@@ -8,10 +8,12 @@ pipeline {
             steps {
                 dir ('express-react') {
                     dir ('express') {
-                        sh 'npm install package.json'
+                        sh 'npm i package.json'
+                        sh 'npm i -g npm-audit-html@beta'
                     }
                     dir ('react') {
-                        sh 'npm install package.json'  
+                        sh 'npm i package.json'
+                        sh 'npm i -g npm-audit-html@beta'
                     } 
                 }
             }
