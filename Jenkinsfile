@@ -4,42 +4,20 @@ pipeline {
     tools {nodejs "nodejs"}
 
     stages {
-        stage ('Building Docker') {
+        stage ('Build') {
             steps {
                 dir ('express-react') {
-                    sh 'docker pull mysql'
                     dir ('express') {
-                        sh 'docker build -t app-server .'
+                        sh 'npm install package.json'
                     }
                     dir ('react') {
-                        sh 'docker build -t react-app .'  
-                    }
-                    agent { dockerfile true }   
+                        sh 'npm install package.json'  
+                    } 
                 }
             }
-            
-            
         }
         stage('Verify Backend') {
             stages {
-                /*stage ('Test') {
-                    steps {
-                        catchError (buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                            sh './node_modules/.bin/jest --coverage'
-                        }
-                        sh 'coverage report && coverage html'
-                        publishHTML (
-                            target: [
-                                allowMissing: false,
-                                alwaysLinkToLastBuild: true,
-                                keepAll: true,
-                                reportDir: 'htmlcov',
-                                reportFiles: 'index.html',
-                                reportName: "Backend Coverage Report"
-                            ]
-                        )
-                    }
-                }*/
                 stage ('Lint Backend') {
                     steps {
                         dir ('express-react/express') {
