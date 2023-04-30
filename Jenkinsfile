@@ -5,40 +5,43 @@ pipeline {
 
     stages {
         stage ('Building Docker') {
-            dir ('express-react') {
-               sh 'docker pull mysql'
-                dir ('express') {
-                    sh 'docker build -t app-server .'
+            steps {
+                dir ('express-react') {
+                    sh 'docker pull mysql'
+                    dir ('express') {
+                        sh 'docker build -t app-server .'
+                    }
+                    dir ('react') {
+                        sh 'docker build -t react-app .'  
+                    }
+                    agent { dockerfile true }   
                 }
-                dir ('react') {
-                    sh 'docker build -t react-app .'  
-                }
-                agent { dockerfile true }   
             }
+            
             
         }
         stage('Verify Backend') {
-            dir ('express-react/express') {
-                stages {
-                    /*stage ('Test') {
-                        steps {
-                            catchError (buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                                sh './node_modules/.bin/jest --coverage'
-                            }
-                            sh 'coverage report && coverage html'
-                            publishHTML (
-                                target: [
-                                    allowMissing: false,
-                                    alwaysLinkToLastBuild: true,
-                                    keepAll: true,
-                                    reportDir: 'htmlcov',
-                                    reportFiles: 'index.html',
-                                    reportName: "Backend Coverage Report"
-                                ]
-                            )
+            stages {
+                /*stage ('Test') {
+                    steps {
+                        catchError (buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                            sh './node_modules/.bin/jest --coverage'
                         }
-                    }*/
-                    stage ('Lint Backend') {
+                        sh 'coverage report && coverage html'
+                        publishHTML (
+                            target: [
+                                allowMissing: false,
+                                alwaysLinkToLastBuild: true,
+                                keepAll: true,
+                                reportDir: 'htmlcov',
+                                reportFiles: 'index.html',
+                                reportName: "Backend Coverage Report"
+                            ]
+                        )
+                    }
+                }*/
+                stage ('Lint Backend') {
+                    dir ('express-react/express') {
                         steps {
                             sh 'npx eslint . --format html --output-file reports/eslint.html'
                             publishHTML (
@@ -53,8 +56,10 @@ pipeline {
                             )
                         }
                     }
-                    stage ('Security Backend') {
-                        steps {
+                }
+                stage ('Security Backend') {
+                    steps {
+                        dir ('express-react/express') {
                             sh 'npm audit --json | npm-audit-html --output reports/audit.html'
                             publishHTML (
                                 target: [
@@ -72,10 +77,10 @@ pipeline {
             }
         }
         stage('Verify Frontend') {
-            dir ('express-react/react') {
-                stages {
-                    stage ('Lint Frontend') {
-                        steps {
+            stages {
+                stage ('Lint Frontend') {
+                    steps {
+                        dir ('express-react/react') {
                             sh 'npx eslint . --format html --output-file reports/eslint.html'
                             publishHTML (
                                 target: [
@@ -89,8 +94,10 @@ pipeline {
                             )
                         }
                     }
-                    stage ('Security Frontend') {
-                        steps {
+                }
+                stage ('Security Frontend') {
+                    steps {
+                        dir ('express-react/react') {
                             sh 'npm audit --json | npm-audit-html --output reports/audit.html'
                             publishHTML (
                                 target: [
