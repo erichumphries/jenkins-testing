@@ -41,8 +41,8 @@ pipeline {
                     }
                 }*/
                 stage ('Lint Backend') {
-                    dir ('express-react/express') {
-                        steps {
+                    steps {
+                        dir ('express-react/express') {
                             sh 'npx eslint . --format html --output-file reports/eslint.html'
                             publishHTML (
                                 target: [
