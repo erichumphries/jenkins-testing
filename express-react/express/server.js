@@ -15,14 +15,13 @@ const upload = multer({ storage: storage })
 
 const generateFileName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex')
 
-app.get("/api/posts", async (req, res) => {
+app.get('/api/posts', async (req, res) => {
   const posts = await prisma.posts.findMany({orderBy: [{ created: 'desc'}]})
-  for (let post of posts) {
+  for (const post of posts) {
     post.imageUrl = await getObjectSignedUrl(post.imageName)
   }
   res.send(posts)
 })
-
 
 app.post('/api/posts', upload.single('image'), async (req, res) => {
   const file = req.file
@@ -30,7 +29,7 @@ app.post('/api/posts', upload.single('image'), async (req, res) => {
   const imageName = generateFileName()
 
   const fileBuffer = await sharp(file.buffer)
-    .resize({ height: 1920, width: 1080, fit: "contain" })
+    .resize({ height: 1920, width: 1080, fit: 'contain' })
     .toBuffer()
 
   await uploadFile(fileBuffer, imageName, file.mimetype)
@@ -38,21 +37,19 @@ app.post('/api/posts', upload.single('image'), async (req, res) => {
   const post = await prisma.posts.create({
     data: {
       imageName,
-      caption,
+      caption
     }
   })
   
   res.status(201).send(post)
 })
 
-app.delete("/api/posts/:id", async (req, res) => {
+app.delete('/api/posts/:id', async (req, res) => {
   const id = +req.params.id
-  const post = await prisma.posts.findUnique({where: {id}}) 
-
+  const post = await prisma.posts.findUnique({ where: { id } }) 
   await deleteFile(post.imageName)
-
-  await prisma.posts.delete({where: {id: post.id}})
+  await prisma.posts.delete({ where: { id: post.id } })
   res.send(post)
 })
 
-app.listen(8080, () => console.log("listening on port 8080"))
+app.listen(8080, () => console.log('listening on port 8080'))
