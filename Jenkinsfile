@@ -62,7 +62,6 @@ pipeline {
                 stage ('Lint Frontend') {
                     steps {
                         dir ('express-react/react') {
-                            sh 'mkdir reports'
                             sh './node_modules/eslint/bin/eslint.js -c eslintrc.json .'
                             publishHTML (
                                 target: [
