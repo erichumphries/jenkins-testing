@@ -23,7 +23,7 @@ pipeline {
                 stage ('Lint Backend') {
                     steps {
                         dir ('express-react/express') {
-                            sh 'npx eslint . --format html --output-file reports/eslint.html'
+                            sh 'npx eslint -c ./.eslintrc.json . --format html --output-file reports/eslint.html'
                             publishHTML (
                                 target: [
                                     allowMissing: false,
@@ -61,7 +61,7 @@ pipeline {
                 stage ('Lint Frontend') {
                     steps {
                         dir ('express-react/react') {
-                            sh 'npx eslint . --format html --output-file reports/eslint.html'
+                            sh 'npx eslint -c ./.eslintrc.json . --format html --output-file reports/eslint.html'
                             publishHTML (
                                 target: [
                                     allowMissing: false,
