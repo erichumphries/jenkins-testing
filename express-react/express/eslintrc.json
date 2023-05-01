@@ -4,7 +4,6 @@
         "es2021": true
     },
     "extends": [
-        "plugin:react/recommended",
         "standard"
     ],
     "overrides": [
@@ -17,10 +16,5 @@
         "react"
     ],
     "rules": {
-    },
-    "settings": {
-        "react": {
-            "version": "detect"
-        }
-    }   
+    }
 }
