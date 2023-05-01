@@ -23,7 +23,7 @@ pipeline {
                 stage ('Lint Backend') {
                     steps {
                         dir ('express-react/express') {
-                            sh 'mkdir reports'
+                            sh 'ls'
                             sh './node_modules/eslint/bin/eslint.js . --format html --output-file reports/eslint.html'
                             publishHTML (
                                 target: [
