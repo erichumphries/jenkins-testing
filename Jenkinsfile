@@ -63,7 +63,7 @@ pipeline {
                     steps {
                         dir ('express-react/react') {
                             sh 'mkdir reports'
-                            sh './node_modules/eslint/bin/eslint.js -c eslintrc.json . --format html --output-file reports/eslint.html'
+                            sh './node_modules/eslint/bin/eslint.js -c eslintrc.json .'
                             publishHTML (
                                 target: [
                                     allowMissing: false,
