@@ -29,13 +29,13 @@ export function uploadFile (fileBuffer, fileName, mimetype) {
   return s3Client.send(new PutObjectCommand(uploadParams))
 }
 
-export function deleteFile(fileName) {
+export function deleteFile (fileName) {
   const deleteParams = {
     Bucket: bucketName,
     Key: fileName
   }
 
-  return s3Client.send (new DeleteObjectCommand(deleteParams))
+  return s3Client.send(new DeleteObjectCommand(deleteParams))
 }
 
 export async function getObjectSignedUrl (key) {

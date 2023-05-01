@@ -16,7 +16,7 @@ const upload = multer({ storage: storage })
 const generateFileName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex')
 
 app.get('/api/posts', async (req, res) => {
-  const posts = await prisma.posts.findMany({orderBy: [{ created: 'desc'}]})
+  const posts = await prisma.posts.findMany({ orderBy: [{ created: 'desc' }] })
   for (const post of posts) {
     post.imageUrl = await getObjectSignedUrl(post.imageName)
   }
@@ -40,13 +40,12 @@ app.post('/api/posts', upload.single('image'), async (req, res) => {
       caption
     }
   })
-  
   res.status(201).send(post)
 })
 
 app.delete('/api/posts/:id', async (req, res) => {
   const id = +req.params.id
-  const post = await prisma.posts.findUnique({ where: { id } }) 
+  const post = await prisma.posts.findUnique({ where: { id } })
   await deleteFile(post.imageName)
   await prisma.posts.delete({ where: { id: post.id } })
   res.send(post)
