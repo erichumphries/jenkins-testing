@@ -32,7 +32,7 @@ pipeline {
                                     keepAll: true,
                                     reportDir: 'reports/',
                                     reportFiles: 'eslint.html',
-                                    reportName: "Backend Lint Report"
+                                    reportName: "Backend ESLint Report"
                                 ]
                             )
                         }
@@ -70,7 +70,7 @@ pipeline {
                                     keepAll: true,
                                     reportDir: 'reports/',
                                     reportFiles: 'eslint.html',
-                                    reportName: "Frontend Lint Report"
+                                    reportName: "Frontend ESLint Report"
                                 ]
                             )
                         }
