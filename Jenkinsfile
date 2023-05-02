@@ -24,7 +24,7 @@ pipeline {
                     steps {
                         dir ('express-react/express') {
                             sh 'ls'
-                            sh './node_modules/eslint/bin/eslint.js -c eslintrc.json .'
+                            sh './node_modules/eslint/bin/eslint.js -c eslintrc.json . --format html --output-file reports/eslint.html'
                             publishHTML (
                                 target: [
                                     allowMissing: false,
@@ -62,7 +62,7 @@ pipeline {
                 stage ('Lint Frontend') {
                     steps {
                         dir ('express-react/react') {
-                            sh './node_modules/eslint/bin/eslint.js -c eslintrc.json .'
+                            sh './node_modules/eslint/bin/eslint.js -c eslintrc.json . --format html --output-file reports/eslint.html'
                             publishHTML (
                                 target: [
                                     allowMissing: false,
