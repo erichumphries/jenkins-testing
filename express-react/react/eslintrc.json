@@ -8,6 +8,9 @@
         "standard"
     ],
     "overrides": [
+        {
+            "files": ["*.jsx", "*.js"]
+        }
     ],
     "parserOptions": {
         "ecmaVersion": "latest",
