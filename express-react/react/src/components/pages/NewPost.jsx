@@ -2,8 +2,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-export default function NewPost() {
-
+export default function NewPost () {
   const [file, setFile] = useState()
   const [caption, setCaption] = useState('')
 

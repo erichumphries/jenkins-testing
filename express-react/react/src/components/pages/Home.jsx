@@ -4,7 +4,6 @@ import SinglePost from '../SinglePost'
 import { useNavigate } from 'react-router-dom'
 
 function App () {
-
   const [posts, setPosts] = useState([])
   const navigate = useNavigate()
 
@@ -17,17 +16,17 @@ function App () {
   }, [])
 
   const likeClicked = async ({ id }) => {
-    console.log(`likeClicked = (${ id })`)
+    console.log(`likeClicked = (${id})`)
   }
   const commentClicked = ({ id }) => {
-    console.log(`commentClicked = (${ id })`)
+    console.log(`commentClicked = (${id})`)
   }
   const editPostClicked = ({ id }) => {
     navigate('/editPost/' + id)
-    console.log(`editPostClicked = (${ id })`)
+    console.log(`editPostClicked = (${id})`)
   }
   const deletePostClicked = async ({ id }) => {
-    console.log(`deletePostClicked = (${ id })`)
+    console.log(`deletePostClicked = (${id})`)
     await axios.delete('/api/posts/' + id)
     setPosts(posts.filter(post => post.id !== id))
   }

@@ -34,7 +34,7 @@ export default function SinglePost ({ className, post, likeClicked, commentClick
             <div className='flex flex-col items-center' onClick={() => deletePostClicked({ id })}>
               <TrashIcon className='cursor-pointer hover:text-gray-900 active:text-gray-700 h-14 w-14 text-gray-700' />
             </div>
-          </div>     
+          </div>
         </div>
 
       </div>
