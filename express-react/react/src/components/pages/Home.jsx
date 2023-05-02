@@ -1,37 +1,34 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-
 import SinglePost from '../SinglePost'
-
 import { useNavigate } from 'react-router-dom'
 
-
-function App() {  
+function App () {
 
   const [posts, setPosts] = useState([])
-  let navigate = useNavigate();
+  const navigate = useNavigate()
 
   useEffect(() => {
-    async function getPosts() {
-      const result = await axios.get("/api/posts")
+    async function getPosts () {
+      const result = await axios.get('/api/posts')
       setPosts(result.data)
     }
     getPosts()
   }, [])
 
-  const likeClicked = async ({id}) => {
-    console.log(`likeClicked = (${id})`)
+  const likeClicked = async ({ id }) => {
+    console.log(`likeClicked = (${ id })`)
   }
-  const commentClicked = ({id}) => {
-    console.log(`commentClicked = (${id})`)
+  const commentClicked = ({ id }) => {
+    console.log(`commentClicked = (${ id })`)
   }
-  const editPostClicked = ({id}) => {
-    navigate("/editPost/" + id)
-    console.log(`editPostClicked = (${id})`)
+  const editPostClicked = ({ id }) => {
+    navigate('/editPost/' + id)
+    console.log(`editPostClicked = (${ id })`)
   }
-  const deletePostClicked = async ({id}) => {
-    console.log(`deletePostClicked = (${id})`)
-    await axios.delete("/api/posts/" + id)
+  const deletePostClicked = async ({ id }) => {
+    console.log(`deletePostClicked = (${ id })`)
+    await axios.delete('/api/posts/' + id)
     setPosts(posts.filter(post => post.id !== id))
   }
 
@@ -42,7 +39,6 @@ function App() {
     deletePostClicked
   }
 
-
   return (
     <div className="App">
 
@@ -51,7 +47,7 @@ function App() {
           <div key={`post-${post.id}`} className="px-5 py-14">
 
             <SinglePost className="relative" post={post} {...postActions}></SinglePost>
-            
+
           </div>
         ))}
       </div>
