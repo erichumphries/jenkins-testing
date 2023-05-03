@@ -14,7 +14,7 @@ const s3Client = new S3Client({
   region,
   credentials: {
     accessKeyId,
-    secretAccessKey
+    secretAccessKey,
   }
 })
 
