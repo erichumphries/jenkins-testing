@@ -23,7 +23,7 @@ pipeline {
                 stage ('Static Scan Backend') {
                     steps {
                         dir ('express-react/express') {
-                            sh './node_modules/.bin/es6-plato -r -d ./reports -e eslintrc.json ./*.js'
+                            sh './node_modules/.bin/es6-plato -r -d ./reports -e .eslintrc.json ./*.js'
                             publishHTML (
                                 target: [
                                     allowMissing: false,
@@ -31,7 +31,7 @@ pipeline {
                                     keepAll: true,
                                     reportDir: 'reports/',
                                     reportFiles: 'index.html',
-                                    reportName: "Backend ESLint Report"
+                                    reportName: "Backend Static Scan Report"
                                 ]
                             )
                         }
@@ -61,7 +61,7 @@ pipeline {
                 stage ('Static Scan Frontend') {
                     steps {
                         dir ('express-react/react') {
-                            sh './node_modules/.bin/es6-plato -r -d ./reports -e eslintrc.json ./*.js ./src/*.jsx ./src/components/*.jsx ./src/components/pages/*.jsx'
+                            sh './node_modules/.bin/es6-plato -r -d ./reports -e .eslintrc.json ./*.js ./src/*.jsx ./src/components/*.jsx ./src/components/pages/*.jsx'
                             publishHTML (
                                 target: [
                                     allowMissing: false,
@@ -69,7 +69,7 @@ pipeline {
                                     keepAll: true,
                                     reportDir: 'reports/',
                                     reportFiles: 'index.html',
-                                    reportName: "Frontend ESLint Report"
+                                    reportName: "Frontend Static Scan Report"
                                 ]
                             )
                         }
