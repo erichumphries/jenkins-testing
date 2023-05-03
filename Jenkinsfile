@@ -12,6 +12,7 @@ pipeline {
                         sh 'npm i -g npm-audit-html@beta'
                         sh 'npm i -g snyk'
                         sh 'npm i -g snyk-to-html'
+                        sh 'npm i parse-url@latest'
                     }
                     dir ('react') {
                         sh 'npm i package.json'
