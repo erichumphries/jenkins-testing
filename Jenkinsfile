@@ -94,7 +94,7 @@ pipeline {
                 }
                 stage ('Lint') {
                     steps {
-                        dir ('express-react/express') {
+                        dir ('express-react/react') {
                             sh './node_modules/.bin/eslint -c .eslintrc.json ./*.js ./src/*.jsx'
                             publishHTML (
                                 target: [
