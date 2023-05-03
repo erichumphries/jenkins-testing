@@ -20,18 +20,18 @@ pipeline {
         }
         stage('Verify Backend') {
             stages {
-                stage ('Lint Backend') {
+                stage ('Static Scan Backend') {
                     steps {
                         dir ('express-react/express') {
                             sh 'ls'
-                            sh './node_modules/eslint/bin/eslint.js -c eslintrc.json . --format html --output-file reports/eslint.html'
+                            sh ' plato -r -d reports -e eslintrc.json ./*.js'
                             publishHTML (
                                 target: [
                                     allowMissing: false,
                                     alwaysLinkToLastBuild: true,
                                     keepAll: true,
                                     reportDir: 'reports/',
-                                    reportFiles: 'eslint.html',
+                                    reportFiles: 'index.html',
                                     reportName: "Backend ESLint Report"
                                 ]
                             )
@@ -59,17 +59,17 @@ pipeline {
         }
         stage('Verify Frontend') {
             stages {
-                stage ('Lint Frontend') {
+                stage ('Static Scan Frontend') {
                     steps {
                         dir ('express-react/react') {
-                            sh './node_modules/eslint/bin/eslint.js -c eslintrc.json --ext js,jsx . --format html --output-file reports/eslint.html'
+                            sh 'plato -r -d reports -e eslintrc.json ./*.js,src/*.jsx'
                             publishHTML (
                                 target: [
                                     allowMissing: false,
                                     alwaysLinkToLastBuild: true,
                                     keepAll: true,
                                     reportDir: 'reports/',
-                                    reportFiles: 'eslint.html',
+                                    reportFiles: 'index.html',
                                     reportName: "Frontend ESLint Report"
                                 ]
                             )
