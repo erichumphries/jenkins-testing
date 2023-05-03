@@ -7,7 +7,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "static-scan": "./node_modules/.bin/es6-plato -r -d ./reports -e .eslintrc.json ./*.js ./src/*.jsx ./src/components/*.jsx ./src/components/pages/*.jsx",
-    "lint": "npx eslint ./*.js ./src/*.jsx ./src/components/*.jsx ./src/components/pages/*.jsx --format html --output-file reports/eslint.html",
+    "lint": "npx eslint ./*.js ./src/*.jsx ./src/components/*.jsx ./src/components/pages/*.jsx",
     "security": "npm audit --json | npm-audit-html --output reports/audit.html"
   },
   "dependencies": {
