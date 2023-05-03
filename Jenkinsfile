@@ -30,7 +30,7 @@ pipeline {
                                     alwaysLinkToLastBuild: true,
                                     keepAll: true,
                                     reportDir: 'reports/',
-                                    reportFiles: 'index.html',
+                                    reportFiles: 'eslint.html',
                                     reportName: "Backend Static Scan Report"
                                 ]
                             )
@@ -85,7 +85,7 @@ pipeline {
                                     alwaysLinkToLastBuild: true,
                                     keepAll: true,
                                     reportDir: 'reports/',
-                                    reportFiles: 'index.html',
+                                    reportFiles: 'eslint.html',
                                     reportName: "Frontend Static Scan Report"
                                 ]
                             )
