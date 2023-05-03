@@ -9,10 +9,10 @@ export default function SinglePost ({ className, post, likeClicked, commentClick
 
       <div className="flex flex-col space-y-2">
 
-      <div className="flex flex-row items-center space-x-4 cursor-pointer active:opacity-80">
-        <UserIcon className='cursor-pointer hover:text-gray-900 active:text-gray-700 h-14 w-14 text-gray-700' />
-        <p className="text-lg  hover:underline">username</p>
-      </div>
+        <div className="flex flex-row items-center space-x-4 cursor-pointer active:opacity-80">
+          <UserIcon className='cursor-pointer hover:text-gray-900 active:text-gray-700 h-14 w-14 text-gray-700' />
+          <p className="text-lg  hover:underline">username</p>
+        </div>
 
         <p className="text-base">{caption}</p>
 
