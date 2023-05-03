@@ -10,12 +10,10 @@ pipeline {
                     dir ('express') {
                         sh 'npm i package.json'
                         sh 'npm i -g npm-audit-html@beta'
-                        sh 'npm i -g plato'
                     }
                     dir ('react') {
                         sh 'npm i package.json'
                         sh 'npm i -g npm-audit-html@beta'
-                        sh 'npm i -g plato'
                     } 
                 }
             }
@@ -26,7 +24,7 @@ pipeline {
                     steps {
                         dir ('express-react/express') {
                             sh 'ls'
-                            sh ' plato -r -d reports -e eslintrc.json ./*.js'
+                            sh './node_modules/.bin/es6-plato -r -d ./reports -e eslintrc.json ./*.js'
                             publishHTML (
                                 target: [
                                     allowMissing: false,
@@ -64,7 +62,7 @@ pipeline {
                 stage ('Static Scan Frontend') {
                     steps {
                         dir ('express-react/react') {
-                            sh 'plato -r -d reports -e eslintrc.json ./*.js,src/*.jsx'
+                            sh './node_modules/.bin/es6-plato -r -d ./reports -e eslintrc.json ./*.js ./src/*.jsx ./src/components/*.jsx ./src/components/pages/*.jsx'
                             publishHTML (
                                 target: [
                                     allowMissing: false,

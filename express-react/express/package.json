@@ -13,7 +13,6 @@
     "express": "^5.0.0-beta.1",
     "multer": "^1.4.5-lts.1",
     "npx": "^10.2.2",
-    "plato": "^1.7.0",
     "prisma": "^4.12.0",
     "sharp": "^0.30.6"
   },
@@ -31,6 +30,7 @@
     "eslint-plugin-n": "^15.7.0",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.32.2",
+    "es6-plato": "^1.2.3",
     "jest": "^29.5.0",
     "nodemon": "^2.0.16",
     "prisma": "^4.12.0"
