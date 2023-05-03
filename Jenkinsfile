@@ -23,7 +23,7 @@ pipeline {
                 stage ('Static Scan') {
                     steps {
                         dir ('express-react/express') {
-                            sh './node_modules/.bin/es6-plato -r -d ./reports -e .eslintrc.json ./*.js'
+                            sh 'npm run static-scan'
                             publishHTML (
                                 target: [
                                     allowMissing: false,
@@ -40,7 +40,7 @@ pipeline {
                 stage ('Lint') {
                     steps {
                         dir ('express-react/express') {
-                            sh 'npx eslint ./*.js --format html --output-file reports/eslint.html'
+                            sh 'npm run lint'
                             publishHTML (
                                 target: [
                                     allowMissing: false,
@@ -57,7 +57,7 @@ pipeline {
                 stage ('Security') {
                     steps {
                         dir ('express-react/express') {
-                            sh 'npm audit --json | npm-audit-html --output reports/audit.html'
+                            sh 'npm run security'
                             publishHTML (
                                 target: [
                                     allowMissing: false,
@@ -78,7 +78,7 @@ pipeline {
                 stage ('Static Scan') {
                     steps {
                         dir ('express-react/react') {
-                            sh './node_modules/.bin/es6-plato -r -d ./reports -e .eslintrc.json ./*.js ./src/*.jsx ./src/components/*.jsx ./src/components/pages/*.jsx'
+                            sh 'npm run static-scan'
                             publishHTML (
                                 target: [
                                     allowMissing: false,
@@ -95,7 +95,7 @@ pipeline {
                 stage ('Lint') {
                     steps {
                         dir ('express-react/react') {
-                            sh 'npx eslint ./*.js ./src/*.jsx --format html --output-file reports/eslint.html'
+                            sh 'npm run lint'
                             publishHTML (
                                 target: [
                                     allowMissing: false,
@@ -112,7 +112,7 @@ pipeline {
                 stage ('Security') {
                     steps {
                         dir ('express-react/react') {
-                            sh 'npm audit --json | npm-audit-html --output reports/audit.html'
+                            sh 'npm run security'
                             publishHTML (
                                 target: [
                                     allowMissing: false,
