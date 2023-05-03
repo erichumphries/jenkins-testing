@@ -40,7 +40,7 @@ pipeline {
                 stage ('Lint') {
                     steps {
                         dir ('express-react/express') {
-                            sh './node_modules/.bin/eslint -c .eslintrc.json ./*.js'
+                            sh 'npx eslint ./*.js --format html --output-file reports/eslint.html'
                             publishHTML (
                                 target: [
                                     allowMissing: false,
@@ -95,7 +95,7 @@ pipeline {
                 stage ('Lint') {
                     steps {
                         dir ('express-react/react') {
-                            sh './node_modules/.bin/eslint -c .eslintrc.json ./*.js ./src/*.jsx'
+                            sh 'npx eslint ./*.js ./src/*.jsx --format html --output-file reports/eslint.html'
                             publishHTML (
                                 target: [
                                     allowMissing: false,
