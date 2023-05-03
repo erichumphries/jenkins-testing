@@ -4,7 +4,8 @@
         "es2020": true
     },
     "extends": [
-        "standard"
+        "standard",
+        "plugin:security/recommended"
     ],
     "overrides": [
     ],
@@ -13,7 +14,7 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "security"
     ],
     "rules": {
     }

@@ -89,10 +89,6 @@ pipeline {
                                     reportName: "Frontend Security Report"
                                 ]
                             )
-                            snykSecurity(
-                                snykInstallation: 'snyk',
-                                snykTokenId: 'snyk-api-token'
-                            )
                         }
                     }
                 }
