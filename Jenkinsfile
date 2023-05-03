@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Verify Backend') {
             stages {
-                stage ('Static Scan Backend') {
+                stage ('Static Scan') {
                     steps {
                         dir ('express-react/express') {
                             sh './node_modules/.bin/es6-plato -r -d ./reports -e .eslintrc.json ./*.js'
@@ -37,7 +37,24 @@ pipeline {
                         }
                     }
                 }
-                stage ('Security Backend') {
+                stage ('Lint') {
+                    steps {
+                        dir ('express-react/express') {
+                            sh './node_modules/.bin/eslint -c .eslintrc.json ./*.js'
+                            publishHTML (
+                                target: [
+                                    allowMissing: false,
+                                    alwaysLinkToLastBuild: true,
+                                    keepAll: true,
+                                    reportDir: 'reports/',
+                                    reportFiles: 'index.html',
+                                    reportName: "Backend Lint Report"
+                                ]
+                            )
+                        }
+                    }
+                }
+                stage ('Security') {
                     steps {
                         dir ('express-react/express') {
                             sh 'npm audit --json | npm-audit-html --output reports/audit.html'
@@ -58,7 +75,7 @@ pipeline {
         }
         stage('Verify Frontend') {
             stages {
-                stage ('Static Scan Frontend') {
+                stage ('Static Scan') {
                     steps {
                         dir ('express-react/react') {
                             sh './node_modules/.bin/es6-plato -r -d ./reports -e .eslintrc.json ./*.js ./src/*.jsx ./src/components/*.jsx ./src/components/pages/*.jsx'
@@ -75,7 +92,24 @@ pipeline {
                         }
                     }
                 }
-                stage ('Security Frontend') {
+                stage ('Lint') {
+                    steps {
+                        dir ('express-react/express') {
+                            sh './node_modules/.bin/eslint -c .eslintrc.json ./*.js ./src/*.jsx'
+                            publishHTML (
+                                target: [
+                                    allowMissing: false,
+                                    alwaysLinkToLastBuild: true,
+                                    keepAll: true,
+                                    reportDir: 'reports/',
+                                    reportFiles: 'index.html',
+                                    reportName: "Frontend Lint Report"
+                                ]
+                            )
+                        }
+                    }
+                }
+                stage ('Security') {
                     steps {
                         dir ('express-react/react') {
                             sh 'npm audit --json | npm-audit-html --output reports/audit.html'
