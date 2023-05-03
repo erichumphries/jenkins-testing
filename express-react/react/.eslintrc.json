@@ -6,6 +6,7 @@
     "extends": [
         "plugin:react/recommended",
         "plugin:react/jsx-runtime",
+        "plugin:security/recommended",
         "standard"
     ],
     "overrides": [
@@ -15,7 +16,8 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "security"
     ],
     "rules": {
         "react/jsx-uses-react": "off",
