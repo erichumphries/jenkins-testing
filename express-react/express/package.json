@@ -18,7 +18,10 @@
   },
   "scripts": {
     "start": "node server.js",
-    "dev": "npx nodemon server.js"
+    "dev": "npx nodemon server.js",
+    "static-scan": "./node_modules/.bin/es6-plato -r -d ./reports -e .eslintrc.json ./*.js",
+    "lint": "npx eslint ./*.js --format html --output-file reports/eslint.html",
+    "security": "npm audit --json | npm-audit-html --output reports/audit.html"
   },
   "keywords": [],
   "author": "",
