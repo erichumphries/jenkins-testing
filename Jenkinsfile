@@ -10,10 +10,12 @@ pipeline {
                     dir ('express') {
                         sh 'npm i package.json'
                         sh 'npm i -g npm-audit-html@beta'
+                        sh 'npm i -g plato'
                     }
                     dir ('react') {
                         sh 'npm i package.json'
                         sh 'npm i -g npm-audit-html@beta'
+                        sh 'npm i -g plato'
                     } 
                 }
             }
