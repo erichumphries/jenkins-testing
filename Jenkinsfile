@@ -23,7 +23,6 @@ pipeline {
                 stage ('Static Scan Backend') {
                     steps {
                         dir ('express-react/express') {
-                            sh 'ls'
                             sh './node_modules/.bin/es6-plato -r -d ./reports -e eslintrc.json ./*.js'
                             publishHTML (
                                 target: [
