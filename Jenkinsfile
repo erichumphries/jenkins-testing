@@ -10,10 +10,14 @@ pipeline {
                     dir ('express') {
                         sh 'npm i package.json'
                         sh 'npm i -g npm-audit-html@beta'
+                        sh 'npm i -g snyk'
+                        sh 'npm i -g snyk-to-html'
                     }
                     dir ('react') {
                         sh 'npm i package.json'
                         sh 'npm i -g npm-audit-html@beta'
+                        sh 'npm i -g snyk'
+                        sh 'npm i -g snyk-to-html'
                     } 
                 }
             }
@@ -50,6 +54,10 @@ pipeline {
                                     reportFiles: 'audit.html',
                                     reportName: "Backend Security Report"
                                 ]
+                            )
+                            snykSecurity(
+                                snykInstallation: 'snyk',
+                                snykTokenId: 'snyk-api-token'
                             )
                         }
                     }
@@ -88,6 +96,10 @@ pipeline {
                                     reportFiles: 'audit.html',
                                     reportName: "Frontend Security Report"
                                 ]
+                            )
+                            snykSecurity(
+                                snykInstallation: 'snyk',
+                                snykTokenId: 'snyk-api-token'
                             )
                         }
                     }
